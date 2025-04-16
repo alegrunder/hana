@@ -1,0 +1,16 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Aufgabenstellung
+    numbered: 3
+    chapters:
+      - file: Aufgabenstellung/Beispiel_Code.md
+  - caption: Jupyter-Book Templates
+    numbered: 1
+    chapters:
+      - file: JupyterbookTemplates/markdown.md
+      - file: JupyterbookTemplates/notebooks.ipynb
+      - file: JupyterbookTemplates/markdown-notebooks.md

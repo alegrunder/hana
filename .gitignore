@@ -3,8 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Mac Zeugs
+# Mac Zeugs und anderes
 .DS_Store
+.jupyter
+.ipynb_checkpoints
+hana_project_book/_build
 
 # C extensions
 *.so
