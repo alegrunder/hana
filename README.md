@@ -9,7 +9,7 @@ HANA Numerik SEP Projekt: Induktive Erwärmung
 2. `$ pip install -U jupyter-book`
 
 ## Book als HTML builden
-1. In hana venv wechseln, etwa so: `$ source myvenv/hana/bin/activate`
+1. In hana venv wechseln, etwa so: `$ source myvenv/hana/bin/activate` oder mit `start_venv.bat` script in venv_control
 2. `$ cd xy/Github/hana` in HANA-Github Folder
 3. `$ jupyter-book build hana_project_book/`
 4. ./hana_project_book/_build/html/index.html öffnen
