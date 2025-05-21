@@ -7356,9 +7356,9 @@ materials
 bcnames
 128
 1	rotsym
-2	outer
-3	outer
-4	outer
+2	outer_right
+3	outer_top
+4	outer_left
 5	inner
 6	inner
 7	inner
