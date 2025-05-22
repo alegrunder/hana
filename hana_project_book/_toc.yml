@@ -8,12 +8,15 @@ parts:
     numbered: 3
     chapters:
       - file: Einleitung/Einleitung.md
-      - file: Einleitung/global_constants.md
   - caption: Geometrie
-    numbered: 1
+    numbered: 3
     chapters:
       - file: Geometrie/stdGeo.ipynb
       - file: Geometrie/TopfGeo.ipynb
+  - caption: Wirbelstromproblem
+    numbered: 3
+    chapters:
+      - file: Wirbelstromproblem/Formulierung.ipynb
   - caption: Hilfsmaterial
     numbered: 3
     chapters:

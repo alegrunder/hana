@@ -32,6 +32,16 @@ mesh = Mesh(unit_square.GenerateMesh(maxh=0.1))
 Draw(mesh);
 ```
 
+```{table} Weitere Parameter und Konstanten
+:name: other_constants_copy
+| Parameter                             | Wert             |
+|------------------------------|-------------|
+| Frequenz $f$               | $50 \text{ Hz}$ |
+| magnetische Feldkonstante $\mu_0$ | $4\pi 10^{-7}$ |
+```
+
+Siehe {numref}`mat_constants`.
+
 (ref:IntroPoissonSchwacheGleichung)=
 ## Schwache Gleichung
 Hier ein Verweis auf dieses Kapitel: {ref}`ref:IntroPoissonSchwacheGleichung`.
