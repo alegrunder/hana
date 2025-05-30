@@ -1,8 +1,23 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.16.7
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
 # Projekt Code Induktive Erwärmung
 
 Projekt Code als Text-File aus dem PDF **ohne funktionierenden** Zusammenhang.
 
-```python
+```
 ### Listing 1 : Definition FE-Raum für Wirbelstromproblem
 V = H1(mesh,order=3, complex = True, dirichlet='rotsym')
 u,v = V.TnT()

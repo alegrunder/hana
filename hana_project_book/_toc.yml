@@ -22,9 +22,13 @@ parts:
     chapters:
       - file: Hilfsmaterial/Beispiel_Code.md
       - file: Hilfsmaterial/Aufgabenstellung_Clone.md
-  - caption: Jupyter-Book Templates
+  - caption: Appendix
     numbered: 1
     chapters:
-      - file: JupyterbookTemplates/markdown.md
-      - file: JupyterbookTemplates/notebooks.ipynb
-      - file: JupyterbookTemplates/markdown-notebooks.md
+      - file: appendix.md
+  #- caption: Jupyter-Book Templates
+  #  numbered: 1
+  #  chapters:
+  #    - file: JupyterbookTemplates/markdown.md
+  #    - file: JupyterbookTemplates/notebooks.ipynb
+  #    - file: JupyterbookTemplates/markdown-notebooks.md

@@ -1,4 +1,19 @@
-# 1 Aufgabestellung
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.16.7
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
+# Aufgabestellung
 
 Das elektromagnetische Feld kann mit Hilfe der Maxwell Gleichungen beschrieben werden.
 Für die niederfrequente Anwendung wird die harmonische Wirbelstromgleichung
@@ -122,4 +137,3 @@ $$ -\text{div}(\lambda\nabla T) = q. \quad \text{(9)} $$
 2.  perfekte Temperatur Isolation am Rand (Neumann Randbedingung)
 
     $$ \nabla T \cdot \mathbf{n} = 0 \quad x \in \partial\Omega $$
-
