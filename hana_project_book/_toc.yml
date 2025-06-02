@@ -17,6 +17,10 @@ parts:
     numbered: 3
     chapters:
       - file: Wirbelstromproblem/Formulierung.ipynb
+  - caption: Lösung und Visualisierung
+    numbered: 3
+    chapters:
+      - file: LsgVisualisierungDiskussion/LsgStdGeo.ipynb
   - caption: Hilfsmaterial
     numbered: 3
     chapters:
