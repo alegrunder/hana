@@ -18,14 +18,13 @@ a += 1j*omega*sigma*u*v*dx(definedon=mesh.Materials('copper|core'))
 # zweiter Bilinearterm
 a += (nu*(1/r*u+ur)*vr + nu*uz*vz)*dx 
 
-# Richtung und Stärke der externen Stromquelle
-Jimp = CoefficientFunction([0,ic/(r_wire**2*pi),0])
-
+# Richtung und Stärke der externen Stromquelle in Jimp
 f = LinearForm(V)
 f += Jimp*v*dx(definedon=mesh.Materials('copper'))
 
-def solveWirbelstromproblem(gfu:GridFunction):
-    global a, f
-    a.Assemble()
-    f.Assemble()
-    gfu.vec.data = a.mat.Inverse(V.FreeDofs()) * f.vec
+# Assemling
+a.Assemble()
+f.Assemble()
+
+# Lösen des Systems
+gfu.vec.data = a.mat.Inverse(V.FreeDofs()) * f.vec

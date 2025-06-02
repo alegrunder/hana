@@ -8,7 +8,7 @@ parts:
     numbered: 3
     chapters:
       - file: Einleitung/Einleitung.md
-  - caption: Geometrie
+  - caption: Definition Geometrie
     numbered: 3
     chapters:
       - file: Geometrie/stdGeo.ipynb
@@ -22,6 +22,7 @@ parts:
     chapters:
       - file: Hilfsmaterial/Beispiel_Code.md
       - file: Hilfsmaterial/Aufgabenstellung_Clone.md
+      - file: Hilfsmaterial/EddyCurrentProblem.md
   - caption: Appendix
     numbered: 1
     chapters:
