@@ -10,7 +10,7 @@ from matplotlib.tri import Triangulation
 class EddyCurrentProblem:
     def __init__(self, mymesh, Jimp_coeff, omega_val, sigma_val, nu_val):
         """
-        Initializes the Eddy Current Problem.
+        Initializes the class.
 
         Args:
             mymesh: The NGSolve mesh object.
@@ -18,6 +18,7 @@ class EddyCurrentProblem:
             omega_val: Angular frequency (omega).
             sigma_val: Electrical conductivity (sigma), can be a CoefficientFunction.
             nu_val: Magnetic reluctivity (1/mu), can be a CoefficientFunction.
+            lam_val: Thermal conductivity, can be a CoefficientFunction
         """
         self.mesh = mymesh
         self.Jimp = Jimp_coeff
@@ -31,6 +32,7 @@ class EddyCurrentProblem:
         self.a = None
         self.f = None
         self.gfu = None # This will store A_phi
+        self.Qe = None  # Will store the calculated thermal source
 
         # For B-field calculations and visualization
         self.B_r_coeff = None
@@ -164,6 +166,42 @@ class EddyCurrentProblem:
         print(f"Drawing B-vector field (real part) at t = {time_val*1000} ms ...")
         Draw(self.B_vector_cf_timed.real, self.mesh,
              f"B-field (Re) at t={time_val:.2e}", vectors=True, **kwargs)
+             
+    def calculate_thermal_source(self):
+            """
+            Calculates the ohmic heat source term Qe.
+            Qe = 1/2 * Norm(InnerProduct(J_total, Conj(E_z))) for complex J, E
+
+            Requires:
+                self.gfu (A_phi solution)
+                self.omega (angular frequency)
+                self.sigma (electrical conductivity CoefficientFunction)
+                self.Jimp (impressed current density)
+            Returns:
+                CoefficientFunction: The heat source Qe, or None if inputs are missing.
+            """
+            if self.gfu is None:
+                print("Error: A_phi solution (self.gfu) not available. Cannot calculate thermal source.")
+                return None
+            if self.omega is None or self.sigma is None or self.Jimp is None:
+                print("Error: Omega, sigma, or Jimp not defined. Cannot calculate thermal source.")
+                return None
+
+            print("Calculating thermal source Qe...")
+
+            # E_z = -j * omega * A_phi
+            Ez = -1j * self.omega * self.gfu
+
+            # Jz = sigma * Ez
+            Jz = self.sigma * Ez
+
+            # total current density
+            Jtot = Jz + self.Jimp
+
+            # thermal source
+            self.Qe   = 1/2 * Norm(InnerProduct(Jtot, Conj(Ez)))
+
+            return self.Qe
 
     def showAnimation(self, store_ani=False):
         # --- Mesh coordinates ---

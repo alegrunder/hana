@@ -13,10 +13,11 @@ parts:
     chapters:
       - file: Geometrie/stdGeo.ipynb
       - file: Geometrie/TopfGeo.ipynb
-  - caption: Wirbelstromproblem
+  - caption: Problemformulierung
     numbered: 3
     chapters:
-      - file: Wirbelstromproblem/Formulierung.ipynb
+      - file: Problemformulierung/FormulierungWirbelstrom.ipynb
+      - file: Problemformulierung/FormulierungWaermeleitung.ipynb
   - caption: Lösung und Visualisierung
     numbered: 3
     chapters:
@@ -24,9 +25,10 @@ parts:
   - caption: Hilfsmaterial
     numbered: 3
     chapters:
-      - file: Hilfsmaterial/Beispiel_Code.md
-      - file: Hilfsmaterial/Aufgabenstellung_Clone.md
+    #  - file: Hilfsmaterial/Beispiel_Code.md
+    #  - file: Hilfsmaterial/Aufgabenstellung_Clone.md
       - file: Hilfsmaterial/EddyCurrentProblem.md
+      - file: Hilfsmaterial/ThermalConductivityProblem.md
   - caption: Appendix
     numbered: 1
     chapters:
