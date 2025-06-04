@@ -4,13 +4,42 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Aufgabenstellung
+  - caption: Einleitung
     numbered: 3
     chapters:
-      - file: Aufgabenstellung/Beispiel_Code.md
-  - caption: Jupyter-Book Templates
+      - file: Einleitung/Einleitung.md
+  - caption: Problemformulierung
+    numbered: 3
+    chapters:
+      - file: Problemformulierung/FormulierungWirbelstrom.ipynb
+      - file: Problemformulierung/FormulierungWaermeleitung.ipynb
+  - caption: Definition Geometrie
+    numbered: 3
+    chapters:
+      - file: Geometrie/stdGeo.ipynb
+      - file: Geometrie/TopfGeo.ipynb
+  - caption: Lösung und Visualisierung
+    numbered: 3
+    chapters:
+      - file: LsgVisualisierungDiskussion/LsgStdGeo.ipynb
+  - caption: Fazit
+    numbered: 3
+    chapters:
+      - file: Fazit/Fazit.md
+  - caption: Hilfsmaterial
+    numbered: 3
+    chapters:
+    #  - file: Hilfsmaterial/Beispiel_Code.md
+    #  - file: Hilfsmaterial/Aufgabenstellung_Clone.md
+      - file: Hilfsmaterial/EddyCurrentProblem.md
+      - file: Hilfsmaterial/ThermalConductivityProblem.md
+  - caption: Appendix
     numbered: 1
     chapters:
-      - file: JupyterbookTemplates/markdown.md
-      - file: JupyterbookTemplates/notebooks.ipynb
-      - file: JupyterbookTemplates/markdown-notebooks.md
+      - file: appendix.md
+  #- caption: Jupyter-Book Templates
+  #  numbered: 1
+  #  chapters:
+  #    - file: JupyterbookTemplates/markdown.md
+  #    - file: JupyterbookTemplates/notebooks.ipynb
+  #    - file: JupyterbookTemplates/markdown-notebooks.md
