@@ -8,20 +8,24 @@ parts:
     numbered: 3
     chapters:
       - file: Einleitung/Einleitung.md
-  - caption: Definition Geometrie
-    numbered: 3
-    chapters:
-      - file: Geometrie/stdGeo.ipynb
-      - file: Geometrie/TopfGeo.ipynb
   - caption: Problemformulierung
     numbered: 3
     chapters:
       - file: Problemformulierung/FormulierungWirbelstrom.ipynb
       - file: Problemformulierung/FormulierungWaermeleitung.ipynb
+  - caption: Definition Geometrie
+    numbered: 3
+    chapters:
+      - file: Geometrie/stdGeo.ipynb
+      - file: Geometrie/TopfGeo.ipynb
   - caption: Lösung und Visualisierung
     numbered: 3
     chapters:
       - file: LsgVisualisierungDiskussion/LsgStdGeo.ipynb
+  - caption: Fazit
+    numbered: 3
+    chapters:
+      - file: Fazit/Fazit.md
   - caption: Hilfsmaterial
     numbered: 3
     chapters:

@@ -164,8 +164,12 @@ class EddyCurrentProblem:
             ))
         
         print(f"Drawing B-vector field (real part) at t = {time_val*1000} ms ...")
-        Draw(self.B_vector_cf_timed.real, self.mesh,
-             f"B-field (Re) at t={time_val:.2e}", vectors=True, **kwargs)
+        if kwargs:
+            Draw(self.B_vector_cf_timed.real, self.mesh,
+                f"B-field (Re) at t={time_val:.2e}", **kwargs)
+        else:
+            Draw(self.B_vector_cf_timed.real, self.mesh,
+                f"B-field (Re) at t={time_val:.2e}", vectors=True)
              
     def calculate_thermal_source(self):
             """
