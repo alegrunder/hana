@@ -22,6 +22,7 @@ parts:
     numbered: 3
     chapters:
       - file: LsgVisualisierungDiskussion/LsgStdGeo.ipynb
+      - file: LsgVisualisierungDiskussion/LsgTopfGeo.ipynb
   - caption: Fazit
     numbered: 3
     chapters:
