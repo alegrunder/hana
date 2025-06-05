@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Willkommen im HANA SEP Projekt
+# Willkommen im HANA Projekt
 
 ```{tableofcontents}
 ```
