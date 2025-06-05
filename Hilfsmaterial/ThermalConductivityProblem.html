@@ -1,0 +1,806 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. ThermalConductivityProblem Class &#8212; HANA Projekt Induktive Erwärmung</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css?v=83a6d794" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Hilfsmaterial/ThermalConductivityProblem';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Literaturverzeichnis" href="../appendix.html" />
+    <link rel="prev" title="9. EddyCurrentProblem Class" href="EddyCurrentProblem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="HANA Projekt Induktive Erwärmung - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="HANA Projekt Induktive Erwärmung - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Willkommen im HANA SEP Projekt
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Einleitung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Einleitung/Einleitung.html">1. Einleitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problemformulierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Problemformulierung/FormulierungWirbelstrom.html">2. Formulierung Wirbelstromproblem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Problemformulierung/FormulierungWaermeleitung.html">3. Wärmeleitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Definition Geometrie</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Geometrie/stdGeo.html">4. Standard-Geometrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geometrie/TopfGeo.html">5. Geometrie mit Topf</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lösung und Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LsgVisualisierungDiskussion/LsgStdGeo.html">6. Lösung des Problems für Standard-Geometrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LsgVisualisierungDiskussion/LsgTopfGeo.html">7. Lösung des Problems für Topf-Geometrie</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fazit</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Fazit/Fazit.html">8. Fazit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hilfsmaterial</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="EddyCurrentProblem.html">9. EddyCurrentProblem Class</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. ThermalConductivityProblem Class</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">11. Literaturverzeichnis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alegrunder/hana" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Hilfsmaterial/ThermalConductivityProblem.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ThermalConductivityProblem Class</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="thermalconductivityproblem-class">
+<h1><span class="section-number">10. </span>ThermalConductivityProblem Class<a class="headerlink" href="#thermalconductivityproblem-class" title="Link to this heading">#</a></h1>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 10.1 </span><span class="caption-text">Inhalt von <a class="reference external" href="http://ThermalConductivityProblem.py">ThermalConductivityProblem.py</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve.webgui</span><span class="w"> </span><span class="kn">import</span> <span class="n">Draw</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThermalConductivityProblem</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">Qe_source</span><span class="p">,</span> <span class="n">lambda_coeff</span><span class="p">,</span> <span class="n">dirichlet_boundaries</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the Thermal Conductivity Problem.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mesh: The NGSolve mesh object.</span>
+<span class="sd">            Qe_source: CoefficientFunction for the heat source term.</span>
+<span class="sd">            lambda_coeff: CoefficientFunction for thermal conductivity.</span>
+<span class="sd">            dirichlet_boundaries: String specifying Dirichlet boundaries,</span>
+<span class="sd">                                  e.g., &#39;outer_right|outer_top|outer_left&#39;.</span>
+<span class="sd">                                  Can be empty if no Dirichlet BCs are set initially.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Qe</span> <span class="o">=</span> <span class="n">Qe_source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lam</span> <span class="o">=</span> <span class="n">lambda_coeff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dirichlet_boundaries_str</span> <span class="o">=</span> <span class="n">dirichlet_boundaries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inhomogDirichlet</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">V_T</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># H1 Finite Element space for Temperature</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u_T</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># Trial function for Temperature</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_T</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># Test function for Temperature</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># GridFunction for Temperature solution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># BilinearForm for the stiffness matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># LinearForm for the load vector</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_max</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span> <span class="c1"># For potential 3D meshes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_3d</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_mesh_ranges</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_fem_space</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_define_base_forms</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calculate_mesh_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates and stores the x, y, (and z) ranges of the mesh.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">v0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">point</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">=</span> <span class="n">v0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">=</span> <span class="n">v0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_3d</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_max</span> <span class="o">=</span> <span class="n">v0</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">v0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_3d</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+
+
+            <span class="k">for</span> <span class="n">v_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nv</span><span class="p">):</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">v_idx</span><span class="p">]</span><span class="o">.</span><span class="n">point</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_max</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_3d</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">z_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_min</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">z_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_max</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            
+            <span class="c1">#print(f&quot;Mesh X range: [{self.x_min}, {self.x_max}]&quot;)</span>
+            <span class="c1">#print(f&quot;Mesh Y range: [{self.y_min}, {self.y_max}]&quot;)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_3d</span><span class="p">:</span>
+                <span class="kc">None</span>
+                <span class="c1">#print(f&quot;Mesh Z range: [{self.z_min}, {self.z_max}]&quot;)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The mesh has no vertices.&quot;</span><span class="p">)</span>
+            <span class="c1"># Set default ranges to avoid errors if methods are called on empty mesh</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">z_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setup_fem_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Defines the Finite Element space for Temperature.</span>
+<span class="sd">        The dirichlet boundaries are taken from self.dirichlet_boundaries_str.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting up H1 space with Dirichlet boundaries: &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dirichlet_boundaries_str</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">V_T</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dirichlet</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dirichlet_boundaries_str</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u_T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V_T</span><span class="o">.</span><span class="n">TnT</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V_T</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Temperature&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_dirichlet_boundaries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_dirichlet_boundaries_str</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allows changing the Dirichlet boundaries and re-initializes the FE space</span>
+<span class="sd">        and base forms.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dirichlet_boundaries_str</span> <span class="o">=</span> <span class="n">new_dirichlet_boundaries_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inhomogDirichlet</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_fem_space</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span> <span class="c1"># Re-setup space with new BCs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_define_base_forms</span><span class="p">()</span>      <span class="c1"># Redefine forms for the new space</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dirichlet boundaries updated to: &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dirichlet_boundaries_str</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_define_base_forms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Defines the base bilinear and linear forms.</span>
+<span class="sd">        These can be extended by other methods for specific boundary conditions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">V_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FE space not set up. Call _setup_fem_space or update_dirichlet_boundaries first.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Bilinear form (stiffness matrix part)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span> <span class="o">=</span> <span class="n">BilinearForm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V_T</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lam</span> <span class="o">*</span> <span class="n">grad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u_T</span><span class="p">)</span> <span class="o">*</span> <span class="n">grad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_T</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+
+        <span class="c1"># Linear form (source term part)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="o">=</span> <span class="n">LinearForm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V_T</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Qe</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Qe</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_T</span> <span class="o">*</span> <span class="n">dx</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: Qe_source is None. No volumetric heat source added to f_T.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_neumann_boundary_condition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boundary_name</span><span class="p">,</span> <span class="n">dTdn</span><span class="p">,</span> <span class="n">lamBorder</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a Neumann boundary condition to the linear form f_T.</span>
+<span class="sd">        flux_value_coeff: CoefficientFunction representing the heat flux.</span>
+<span class="sd">                          Positive dTdn means heat flowing INTO the domain.</span>
+<span class="sd">                          The term in linear form is integral(lam * dTdn * v_T * ds).</span>
+<span class="sd">                          If heat flows OUTSIDE, dTdn should be negative.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_define_base_forms</span><span class="p">()</span> <span class="c1"># Ensure f_T is initialized</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Still None, something is wrong</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: LinearForm f_T could not be initialized.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Adding Neumann BC on &#39;</span><span class="si">{</span><span class="n">boundary_name</span><span class="si">}</span><span class="s2">&#39; with given dT/dn&quot;</span><span class="p">)</span>
+        <span class="c1"># The term is integral(q_n * v * ds) where q_n is the prescribed flux.</span>
+        <span class="c1"># If flux_value_coeff is heat flux INTO domain, it&#39;s + lam_air * dTdn * v_T * ds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="o">+=</span> <span class="n">lamBorder</span> <span class="o">*</span> <span class="n">dTdn</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_T</span> <span class="o">*</span> <span class="n">ds</span><span class="p">(</span><span class="n">definedon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">Boundaries</span><span class="p">(</span><span class="n">boundary_name</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_robin_boundary_condition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boundary_name</span><span class="p">,</span> <span class="n">alpha_coeff</span><span class="p">,</span> <span class="n">lamBorder</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a Robin (convective) boundary condition.</span>
+<span class="sd">        dT/dn = - alpha * T</span>
+<span class="sd">        Weak form contribution: -integral(-alpha_coeff*u_T*v_T*ds)</span>
+<span class="sd">        So, add to a_T: integral(alpha_coeff * u_T * v_T * ds)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            boundary_name: Name of the boundary.</span>
+<span class="sd">            alpha_coeff: Heat transfer coefficient (CoefficientFunction).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_define_base_forms</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: BilinearForm a_T or LinearForm f_T could not be initialized.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Adding Robin BC on &#39;</span><span class="si">{</span><span class="n">boundary_name</span><span class="si">}</span><span class="s2">&#39; with given alpha&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span> <span class="o">+=</span> <span class="n">lamBorder</span> <span class="o">*</span> <span class="n">alpha_coeff</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">u_T</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_T</span> <span class="o">*</span> <span class="n">ds</span><span class="p">(</span><span class="n">definedon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">Boundaries</span><span class="p">(</span><span class="n">boundary_name</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_dirichlet_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boundary_name</span><span class="p">,</span> <span class="n">value_coeff</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets Dirichlet values on a specified boundary.</span>
+<span class="sd">        Note: The boundary must have been included in &#39;dirichlet_boundaries_str&#39;</span>
+<span class="sd">              during FE space setup for this to take effect directly on gfu.Set.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            boundary_name: Name of the boundary.</span>
+<span class="sd">            value_coeff: CoefficientFunction or float for the temperature value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GridFunction gf_T not initialized.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting Dirichlet value on &#39;</span><span class="si">{</span><span class="n">boundary_name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">value_coeff</span><span class="p">,</span> <span class="n">definedon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">Boundaries</span><span class="p">(</span><span class="n">boundary_name</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inhomogDirichlet</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Assembles the forms and solves the thermal system.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Problem forms or GridFunction not fully set up.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Assembling BilinearForm a_T...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Assembling LinearForm f_T...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solving thermal system...&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inhomogDirichlet</span><span class="p">:</span>
+            <span class="c1"># Apply Dirichlet conditions (gf_T might have been set by set_dirichlet_values)</span>
+            <span class="c1"># The solver handles the FreeDofs correctly based on the dirichlet flags in V_T</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">Inverse</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">V_T</span><span class="o">.</span><span class="n">FreeDofs</span><span class="p">()</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f_T</span><span class="o">.</span><span class="n">vec</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span><span class="o">.</span><span class="n">mat</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span> <span class="c1"># Standard way to handle inhomogeneous Dirichlet</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_T</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">Inverse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V_T</span><span class="o">.</span><span class="n">FreeDofs</span><span class="p">())</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_T</span><span class="o">.</span><span class="n">vec</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thermal system solved.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_temperature_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Draws the temperature solution gf_T.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">FV</span><span class="p">()</span><span class="o">.</span><span class="n">Norm</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No temperature solution to draw or solution is zero.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drawing Temperature...&quot;</span><span class="p">)</span>
+        <span class="n">Draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">Redraw</span><span class="p">(</span><span class="n">blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_boundary_conditions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plots Dirichlet and Neumann values on the boundaries of a 2D mesh.</span>
+<span class="sd">        Assumes gf_T has been computed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temperature solution (gf_T) not available. Cannot plot boundary conditions.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_3d</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Boundary condition plotting is currently implemented for 2D meshes only.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Mesh ranges not calculated</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mesh ranges not calculated. Cannot plot boundary conditions.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Plotting boundary conditions...&quot;</span><span class="p">)</span>
+        <span class="c1"># Ensure gf_T has meaningful data, otherwise grad(gf_T) might be problematic</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">FV</span><span class="p">()</span><span class="o">.</span><span class="n">Norm</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">:</span> <span class="c1"># Check if solution is non-trivial</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: Temperature solution gf_T is close to zero. Gradient might be unreliable.&quot;</span><span class="p">)</span>
+
+
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+        <span class="n">yp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+
+        <span class="c1"># For grad(gf_T), it&#39;s better to project it to a suitable space if evaluating point-wise</span>
+        <span class="c1"># However, for plotting along boundaries, direct evaluation might be acceptable</span>
+        <span class="c1"># but can be noisy. Consider projecting grad(gf_T) to an L2 space for smoother results.</span>
+        <span class="n">grad_gfT_cf</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="p">)</span>
+
+        <span class="c1"># ========== First plot: left/right boundaries (constant x) ==========</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dir_left_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))</span> <span class="k">for</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="n">yp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            <span class="n">dir_right_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))</span> <span class="k">for</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="n">yp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            
+            <span class="c1"># Normal vector on left boundary is (-1, 0), so -dT/dx = -grad(T)[0]</span>
+            <span class="c1"># Normal vector on right boundary is (1, 0), so dT/dx = grad(T)[0]</span>
+            <span class="c1"># Neumann value q_n = -lambda * dT/dn. We plot dT/dn here.</span>
+            <span class="c1"># For simplicity, we plot components of grad(T) and interpret them.</span>
+            <span class="c1"># dT/dn on left: -grad(T)[0]</span>
+            <span class="c1"># dT/dn on right: +grad(T)[0]</span>
+            <span class="n">neu_left_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">grad_gfT_cf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="n">yp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            <span class="n">neu_right_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">grad_gfT_cf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="n">yp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+            <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yp</span><span class="p">,</span> <span class="n">dir_left_vals</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Left Dirichlet (T)&#39;</span><span class="p">)</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yp</span><span class="p">,</span> <span class="n">dir_right_vals</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Right Dirichlet (T)&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yp</span><span class="p">,</span> <span class="n">neu_left_vals</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Left dT/dn_x&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yp</span><span class="p">,</span> <span class="n">neu_right_vals</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Right dT/dn_x&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error evaluating on left/right boundaries: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">dir_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">dir_left_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dir_right_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mf">1e-3</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.1</span>
+        <span class="n">neu_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">neu_left_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">neu_right_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">*</span> <span class="mf">1.1</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">dir_max</span><span class="p">,</span> <span class="n">dir_max</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">neu_max</span><span class="p">,</span> <span class="n">neu_max</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature (Dirichlet)&quot;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;dT/dn (Normal Gradient)&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;y-coordinate&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Boundary Values on Left &amp; Right Edges&quot;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">lines1</span><span class="p">,</span> <span class="n">labels1</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+        <span class="n">lines2</span><span class="p">,</span> <span class="n">labels2</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">lines1</span> <span class="o">+</span> <span class="n">lines2</span><span class="p">,</span> <span class="n">labels1</span> <span class="o">+</span> <span class="n">labels2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+        <span class="c1"># ========== Second plot: bottom/top boundaries (constant y) ==========</span>
+        <span class="n">ax4</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dir_bottom_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">))</span> <span class="k">for</span> <span class="n">x_val</span> <span class="ow">in</span> <span class="n">xp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            <span class="n">dir_top_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">gf_T</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span><span class="p">))</span> <span class="k">for</span> <span class="n">x_val</span> <span class="ow">in</span> <span class="n">xp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+            <span class="c1"># Normal vector on bottom boundary is (0, -1), so -dT/dy = -grad(T)[1]</span>
+            <span class="c1"># Normal vector on top boundary is (0, 1), so dT/dy = grad(T)[1]</span>
+            <span class="c1"># dT/dn on bottom: -grad(T)[1]</span>
+            <span class="c1"># dT/dn on top: +grad(T)[1]</span>
+            <span class="n">neu_bottom_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">grad_gfT_cf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x_val</span> <span class="ow">in</span> <span class="n">xp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            <span class="n">neu_top_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">grad_gfT_cf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x_val</span> <span class="ow">in</span> <span class="n">xp</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+            <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">dir_bottom_vals</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bottom Dirichlet (T)&#39;</span><span class="p">)</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">dir_top_vals</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Top Dirichlet (T)&#39;</span><span class="p">)</span>
+            <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">neu_bottom_vals</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bottom dT/dn_y&#39;</span><span class="p">)</span>
+            <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">neu_top_vals</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Top dT/dn_y&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error evaluating on bottom/top boundaries: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">dir_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">dir_bottom_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dir_top_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mf">1e-3</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.1</span>
+        <span class="n">neu_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">neu_bottom_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">neu_top_vals</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">*</span> <span class="mf">1.1</span>
+        <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">dir_max</span><span class="p">,</span> <span class="n">dir_max</span><span class="p">)</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">neu_max</span><span class="p">,</span> <span class="n">neu_max</span><span class="p">)</span>
+        <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature (Dirichlet)&quot;</span><span class="p">)</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;dT/dn (Normal Gradient)&quot;</span><span class="p">)</span>
+        <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x-coordinate&quot;</span><span class="p">)</span>
+        <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Boundary Values on Bottom &amp; Top Edges&quot;</span><span class="p">)</span>
+        <span class="n">ax3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">lines1</span><span class="p">,</span> <span class="n">labels1</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+        <span class="n">lines2</span><span class="p">,</span> <span class="n">labels2</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+        <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">lines1</span> <span class="o">+</span> <span class="n">lines2</span><span class="p">,</span> <span class="n">labels1</span> <span class="o">+</span> <span class="n">labels2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Hilfsmaterial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="EddyCurrentProblem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>EddyCurrentProblem Class</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../appendix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Literaturverzeichnis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Samuel Dobler, Alexander Grunder, Pascal Heiniger
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

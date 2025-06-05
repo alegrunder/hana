@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Aufgabestellung &#8212; HANA Projekt Induktive Erwärmung</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css?v=83a6d794" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Hilfsmaterial/Aufgabenstellung_Clone';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="HANA Projekt Induktive Erwärmung - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="HANA Projekt Induktive Erwärmung - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Willkommen im HANA SEP Projekt
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Einleitung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Einleitung/Einleitung.html">1. Einleitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problemformulierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Problemformulierung/FormulierungWirbelstrom.html">2. Formulierung Wirbelstromproblem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Problemformulierung/FormulierungWaermeleitung.html">3. Wärmeleitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Definition Geometrie</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Geometrie/stdGeo.html">4. Standard-Geometrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geometrie/TopfGeo.html">5. Geometrie mit Topf</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lösung und Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LsgVisualisierungDiskussion/LsgStdGeo.html">6. Lösung des Problems für Standard-Geometrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LsgVisualisierungDiskussion/LsgTopfGeo.html">7. Lösung des Problems für Topf-Geometrie</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fazit</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Fazit/Fazit.html">8. Fazit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hilfsmaterial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="EddyCurrentProblem.html">9. EddyCurrentProblem Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ThermalConductivityProblem.html">10. ThermalConductivityProblem Class</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">11. Literaturverzeichnis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alegrunder/hana" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Hilfsmaterial/Aufgabenstellung_Clone.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Aufgabestellung</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotationssymmetrische-gleichung">8.1. 1.1 Rotationssymmetrische Gleichung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#induktive-warmequelle">8.2. 1.2 Induktive Wärmequelle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermisches-feld">8.3. 1.3 Thermisches Feld</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="aufgabestellung">
+<h1>Aufgabestellung<a class="headerlink" href="#aufgabestellung" title="Link to this heading">#</a></h1>
+<p>Das elektromagnetische Feld kann mit Hilfe der Maxwell Gleichungen beschrieben werden.
+Für die niederfrequente Anwendung wird die harmonische Wirbelstromgleichung</p>
+<div class="math notranslate nohighlight">
+\[ \sigma j\omega \mathbf{A} + \text{curl}\mu^{-1}\text{curl}\mathbf{A} + \sigma\nabla\varphi = \mathbf{j}_{\text{ext}} \quad \text{für } x \in \Omega_{\sigma&gt;0} \quad \text{(1a)} \]</div>
+<div class="math notranslate nohighlight">
+\[ \text{div}(\sigma j\omega \mathbf{A} + \sigma\nabla\varphi) = \text{div}(\mathbf{j}_{\text{ext}}) \quad \text{für } x \in \Omega_{\sigma&gt;0} \quad \text{(1b)} \]</div>
+<div class="math notranslate nohighlight">
+\[ \text{curl}\mu^{-1}\text{curl}\mathbf{A} = \mathbf{j}_{\text{ext}} \quad \text{für } x \in \Omega_{\sigma=0} \quad \text{(1c)} \]</div>
+<p>benutzt, wobei mit <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> das Vektorpotential und mit <span class="math notranslate nohighlight">\(\varphi\)</span> das skalare Potential bezeichnet werden. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{B} = \text{curl}\mathbf{A} \]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{E} = -\sigma j\omega \mathbf{A} - \nabla\varphi. \]</div>
+<p>Die zeitabhängige Lösung ist gegeben durch</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{A}(t, x) = \mathbf{A}(x) \cdot e^{j\omega t} \]</div>
+<p>mit <span class="math notranslate nohighlight">\(\omega = 2\pi f\)</span> und <span class="math notranslate nohighlight">\(j = \sqrt{-1}\)</span>.</p>
+<p>Die Stromdichte <span class="math notranslate nohighlight">\(\mathbf{J}\)</span> kann in zwei Komponenten aufgeteilt werden. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{J} = \mathbf{J}_{\text{int}} + \mathbf{J}_{\text{ext}}. \]</div>
+<p>mit der induzierten Stromdichte <span class="math notranslate nohighlight">\(\mathbf{J}_{\text{int}}\)</span> (Wirbelströme) und der externen Stromdichte <span class="math notranslate nohighlight">\(\mathbf{J}_{\text{ext}}\)</span>.
+Die externe Stromdichte ist zum Beispiel gegeben durch eine Stromquelle, mit welcher die Spulen getrieben werden.
+Für dreidimensionale Geometrien ist es in der Regel nicht möglich sämtliche Windungen im Mesh aufzulösen. Unter Vernachlässigung von Proximity- und Skineffekt in den Windungen folgt mit <span class="math notranslate nohighlight">\(0 &lt; \kappa &lt; 1\)</span> das regularisierte Wirbelstromproblem</p>
+<div class="math notranslate nohighlight">
+\[ \sigma j\omega \mathbf{A} + \text{curl}\mu^{-1}\text{curl}\mathbf{A} + \kappa\mathbf{A} = \mathbf{j}_{\text{ext}} \quad \text{für } x \in \Omega. \quad \text{(2)} \]</div>
+<p>Für den Fall, dass eine <strong>Stromquelle</strong> gegeben ist, gilt</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{J}_{\text{ext}} = \frac{N_c i_c}{A_c} \mathbf{w}(x), \]</div>
+<p>mit Anzahl Windungen <span class="math notranslate nohighlight">\(N_c\)</span>, Strom in den Windungen <span class="math notranslate nohighlight">\(i_c\)</span> und der Querschnittsfläche <span class="math notranslate nohighlight">\(A_c\)</span>.</p>
+<p>Für den Fall, dass eine <strong>Spannungsquelle</strong> gegeben ist, folgt aus dem Induktionsgesetz die Kopplung zwischen Strom und Spannung in den Windungen. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ j\omega\Psi + R_c i_c = u_c. \]</div>
+<p>Damit folgt das gekoppelte Problem</p>
+<div class="math notranslate nohighlight">
+\[ \sigma j\omega \mathbf{A} + \text{curl}\mu^{-1}\text{curl}\mathbf{A} + \kappa\mathbf{A} - \frac{N_c}{A_c}\mathbf{w}(x) i_c = 0 \quad \text{für } x \in \Omega. \]</div>
+<div class="math notranslate nohighlight">
+\[ j\omega\Psi + R_c i_c = u_c. \quad \text{(3)} \]</div>
+<section id="rotationssymmetrische-gleichung">
+<h2>1.1 Rotationssymmetrische Gleichung<a class="headerlink" href="#rotationssymmetrische-gleichung" title="Link to this heading">#</a></h2>
+<p>Für rotationssymmetrische Geometrien können in der Regel die Windungen im Mesh aufgelöst werden (vgl. Abbildung 1). Wir betrachten daher das Problem (1) in Zylinderkoordinaten <span class="math notranslate nohighlight">\((z, r, \phi)\)</span>. In diesem Fall gilt</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \mathbf{A} = \begin{pmatrix} A_z \\ A_r \\ A_\phi \end{pmatrix} \end{split}\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(A_z = A_r = 0\)</span>. Das Vektorpotential ist daher gegeben durch die skalare Komponente <span class="math notranslate nohighlight">\(A_\phi\)</span>. Damit folgt für (1)</p>
+<div class="math notranslate nohighlight">
+\[ \sigma j\omega A_\phi - \left( \frac{\partial}{\partial r} \left( \frac{\mu^{-1}}{r} \frac{\partial}{\partial r} (r A_\phi) \right) + \frac{\partial}{\partial z} \left( \mu^{-1} \frac{\partial A_\phi}{\partial z} \right) \right) = j_\phi. \quad \text{(4)} \]</div>
+<p>Für die magnetische Flussdichte gilt in dem Fall</p>
+<div class="math notranslate nohighlight">
+\[ B_r = -\frac{\partial A_\phi}{\partial z} \]</div>
+<div class="math notranslate nohighlight">
+\[ B_z = \frac{1}{r} \frac{\partial (r A_\phi)}{\partial r} \quad \text{(5)} \]</div>
+<p>Das elektrische Feld ist orthogonal zum Magnetfeld und zeigt in <span class="math notranslate nohighlight">\(\phi\)</span> Richtung. Damit folgt</p>
+<div class="math notranslate nohighlight">
+\[ E_z = -j\omega A_\phi. \quad \text{(6)} \]</div>
+<p>Die natürliche Symmetriebedingung auf der Rotationsachse ist gegeben durch</p>
+<div class="math notranslate nohighlight">
+\[ A_\phi = 0. \]</div>
+<!-- Abbildung 1: Geometrie -->
+<p><em>(Description: Abbildung 1 zeigt eine Mesh-Geometrie mit einem roten Leiter und grünen Windungen.)</em></p>
+<p>Im rotationssymmetrischen Modell, mit den einzelnen Windungen modelliert, folgt für die Stromdichte <span class="math notranslate nohighlight">\(j_\phi\)</span></p>
+<div class="math notranslate nohighlight">
+\[ j_\phi = \frac{i_c}{r^2\pi}. \]</div>
+<p>Wir setzen <span class="math notranslate nohighlight">\(r = 0.001\text{m}\)</span> und <span class="math notranslate nohighlight">\(i_c = 10\text{A}\)</span>. Die magnetische Permeabilität <span class="math notranslate nohighlight">\(\mu\)</span> ist gegeben durch <span class="math notranslate nohighlight">\(\mu = \mu_r \cdot \mu_0\)</span>. Die relative Permeabilität ist ein Mass für die Feldverstärkungim Material (vgl. Tabelle 1). Vom Gebiet abhängige Konstanten können mit Hilfe von <code class="docutils literal notranslate"><span class="pre">CoefficientFunction</span></code> definiert werden (vgl. Listing 7).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Material</p></th>
+<th class="head"><p>Luft</p></th>
+<th class="head"><p>Windungen</p></th>
+<th class="head"><p>Kern</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>el. Leitfähigkeit <span class="math notranslate nohighlight">\(\sigma\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0 \text{ S/m}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(56 \cdot 10^6 \text{ S/m}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(56 \cdot 10^6 \text{ S/m}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>relative mag. Permeabilität <span class="math notranslate nohighlight">\(\mu_r\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Wärmeleitfähigkeit <span class="math notranslate nohighlight">\(\lambda\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0.0262 \text{ W/(m K)}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(400 \text{ W/(m K)}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(400 \text{ W/(m K)}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tabelle 1: Materialparameter.</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Frequenz <span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(50 \text{ Hz}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>magnetische Feldkonstante <span class="math notranslate nohighlight">\(\mu_0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(4\pi 10^{-7}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Tabelle 2: Konstanten</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="induktive-warmequelle">
+<h2>1.2 Induktive Wärmequelle<a class="headerlink" href="#induktive-warmequelle" title="Link to this heading">#</a></h2>
+<p>Die induktive Wärmequelle ist gegeben durch die mittleren Wärmeverluste des elektromagnetischen Feldes</p>
+<div class="math notranslate nohighlight">
+\[ q = \frac{1}{2} |\mathbf{J} \cdot \mathbf{E}|= \frac{\sigma}{2} |\mathbf{E}|^2, \quad \text{(7)} \]</div>
+<p>wobei mit <span class="math notranslate nohighlight">\(\mathbf{J} = \mathbf{J}_{\text{int}} + \mathbf{J}_{\text{ext}}\)</span> die totale Stromdichte bezeichnet sei.</p>
+</section>
+<section id="thermisches-feld">
+<h2>1.3 Thermisches Feld<a class="headerlink" href="#thermisches-feld" title="Link to this heading">#</a></h2>
+<p>Die parabolische Wärmeleitungsgleichung ist gegeben durch</p>
+<div class="math notranslate nohighlight">
+\[ C_p \rho \dot{T} - \text{div}(\lambda\nabla T) + \nabla T \cdot \mathbf{v} = q, \quad \text{(8)} \]</div>
+<p>wobei in der Form auch der konvektive Wärmetransport gegeben durch ein Strömungsfeld <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> berücksichtigt wird. Im Folgenden wird dieser Term für das erste vernachlässigt.
+Die stationäre Lösung der Wärmeleitungsgleichung (8) genügt der elliptischen Differentialgleichung</p>
+<div class="math notranslate nohighlight">
+\[ -\text{div}(\lambda\nabla T) = q. \quad \text{(9)} \]</div>
+<p><strong>Randbedingungen:</strong></p>
+<ol class="arabic">
+<li><p>konstante Temperatur am Rand (Dirichlet Randbedingung)</p>
+<div class="math notranslate nohighlight">
+\[ T(x) = 0 \quad x \in \partial\Omega \]</div>
+</li>
+<li><p>perfekte Temperatur Isolation am Rand (Neumann Randbedingung)</p>
+<div class="math notranslate nohighlight">
+\[ \nabla T \cdot \mathbf{n} = 0 \quad x \in \partial\Omega \]</div>
+</li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Hilfsmaterial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotationssymmetrische-gleichung">8.1. 1.1 Rotationssymmetrische Gleichung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#induktive-warmequelle">8.2. 1.2 Induktive Wärmequelle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermisches-feld">8.3. 1.3 Thermisches Feld</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Samuel Dobler, Alexander Grunder, Pascal Heiniger
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

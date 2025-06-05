@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Wärmeleitung &#8212; HANA Projekt Induktive Erwärmung</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css?v=83a6d794" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Problemformulierung/FormulierungWaermeleitung';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Standard-Geometrie" href="../Geometrie/stdGeo.html" />
+    <link rel="prev" title="2. Formulierung Wirbelstromproblem" href="FormulierungWirbelstrom.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="HANA Projekt Induktive Erwärmung - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="HANA Projekt Induktive Erwärmung - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Willkommen im HANA SEP Projekt
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Einleitung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Einleitung/Einleitung.html">1. Einleitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problemformulierung</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="FormulierungWirbelstrom.html">2. Formulierung Wirbelstromproblem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Wärmeleitung</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Definition Geometrie</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Geometrie/stdGeo.html">4. Standard-Geometrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geometrie/TopfGeo.html">5. Geometrie mit Topf</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lösung und Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LsgVisualisierungDiskussion/LsgStdGeo.html">6. Lösung des Problems für Standard-Geometrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LsgVisualisierungDiskussion/LsgTopfGeo.html">7. Lösung des Problems für Topf-Geometrie</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fazit</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Fazit/Fazit.html">8. Fazit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hilfsmaterial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Hilfsmaterial/EddyCurrentProblem.html">9. EddyCurrentProblem Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Hilfsmaterial/ThermalConductivityProblem.html">10. ThermalConductivityProblem Class</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">11. Literaturverzeichnis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alegrunder/hana" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Problemformulierung/FormulierungWaermeleitung.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Wärmeleitung</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinfachung-der-warmeleitungsgleichung">3.1. Vereinfachung der Wärmeleitungsgleichung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#randbedingungen">3.2. Randbedingungen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-randbedingung">3.2.1. Dirichlet-Randbedingung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-randbedingung">3.2.2. Neumann-Randbedingung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robin-randbedingung">3.2.3. Robin-Randbedingung</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herleitung-schwache-gleichung">3.3. Herleitung schwache Gleichung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-mit-ngsolve">3.4. Definition mit NGsolve</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="warmeleitung">
+<h1><span class="section-number">3. </span>Wärmeleitung<a class="headerlink" href="#warmeleitung" title="Link to this heading">#</a></h1>
+<p>Die Theorie folgt der Aufgabenstellung <span id="id1">[<a class="reference internal" href="../appendix.html#id2" title="Simon Stingelin. HANA Numerik SEP Projekt: Aufgabenstellung. Projektaufgabenstellung, Zürcher Hochschule für Angewandte Wissenschaften (ZHAW), April 2025. Aufgabenstellung für das Projekt im Modul HANA Numerik SEP. Thema: Induktive Erwärmung. Gruppe: Samuel Dobler, Alexander Grunder, Pascal Heiniger.">Sti25</a>]</span>.</p>
+<section id="vereinfachung-der-warmeleitungsgleichung">
+<h2><span class="section-number">3.1. </span>Vereinfachung der Wärmeleitungsgleichung<a class="headerlink" href="#vereinfachung-der-warmeleitungsgleichung" title="Link to this heading">#</a></h2>
+<p>Die vollständige Wärmeleitungsgleichung ist gebeben durch</p>
+<div class="math notranslate nohighlight" id="equation-eq-waermeleitungkomplett">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-waermeleitungkomplett" title="Link to this equation">#</a></span>\[ \underbrace{C_p \rho \dot{T}}_{\text{Zeitabhängigkeit}} - \text{div}(\lambda \nabla T) + \underbrace{\nabla T \cdot \mathbf{v}}_{\text{Konvektion}} = q.\]</div>
+<p>Hier wird der konvektive Wärmetransport gegeben durch das Strömungsfeld <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> vernachlässigt. Ausserdem interessiert nur die stationäre Lösung, die zeitabhängige Komponente kann daher auch vernachlässigt werden.</p>
+<p>Für die  stationäre Lösung der Wärmeleitungsgleichung bleibt die elliptische Diﬀerentialgleichung</p>
+<div class="math notranslate nohighlight" id="equation-eq-tempdgl">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-tempdgl" title="Link to this equation">#</a></span>\[ -\text{div}(\lambda \nabla T) = q.\]</div>
+</section>
+<section id="randbedingungen">
+<h2><span class="section-number">3.2. </span>Randbedingungen<a class="headerlink" href="#randbedingungen" title="Link to this heading">#</a></h2>
+<p>Es wird zwischen drei Arten von Randbedingungen unterschieden.</p>
+<section id="dirichlet-randbedingung">
+<h3><span class="section-number">3.2.1. </span>Dirichlet-Randbedingung<a class="headerlink" href="#dirichlet-randbedingung" title="Link to this heading">#</a></h3>
+<p>Mit einer Dirichlet-Randbedingung liegt am Rand eine konstante Temperatur (hier 0°C) vor:</p>
+<div class="math notranslate nohighlight">
+\[ T(x) = 0, \quad x\in \partial\Omega\]</div>
+</section>
+<section id="neumann-randbedingung">
+<h3><span class="section-number">3.2.2. </span>Neumann-Randbedingung<a class="headerlink" href="#neumann-randbedingung" title="Link to this heading">#</a></h3>
+<p>Mit einer Neumann-Randbedingung wird der Fluss durch den Rand vorgegeben. Im Fall von perfekter Temperaturisolation, also kein Fluss durch die Oberfläche, sieht die Bedingung folgendermassen aus:</p>
+<div class="math notranslate nohighlight">
+\[   \frac{\partial T}{\partial \mathbf{n}} = \nabla T \cdot \mathbf{n} =0, \quad x\in \partial\Omega\]</div>
+</section>
+<section id="robin-randbedingung">
+<span id="ref-robinrand"></span><h3><span class="section-number">3.2.3. </span>Robin-Randbedingung<a class="headerlink" href="#robin-randbedingung" title="Link to this heading">#</a></h3>
+<p>Eine teilweise Isolation kann mit einer Robin-Randbedingung modelliert werden, die ein Zusammenhang zwischen der Temperatur und dem Temperaturfluss herstellt. Hier impliziert dies, dass der Fluss direkt proportional zur Temperatur ist. Anders ausgedrückt fliesst an den heissen Stellen auch mehr Wärme durch die teilweise Isolation ab als an den kühlen Stellen. Hier wird angenommen, dass die Umgebungstemperatur ausserhalb des Gebiets 0°C ist.</p>
+<div class="math notranslate nohighlight">
+\[  \nabla T \cdot \mathbf{n} = - \alpha T, \quad x\in \partial\Omega\]</div>
+<p>Das Minus kommt daher, dass bei positiver Temperatur der Fluss <span class="math notranslate nohighlight">\(\nabla T \cdot \mathbf{n}\)</span> negativ ist (Wärme fliesst aus dem Gebiet heraus).
+Der Parameter <span class="math notranslate nohighlight">\(\alpha\)</span> bestimmt, wie gut die Isolation ist. Je tiefer <span class="math notranslate nohighlight">\(\alpha\)</span>, desto besser die Isolation. Im Grenzfall <span class="math notranslate nohighlight">\(\alpha \rightarrow 0\)</span> besteht kein Fluss, also die Neumann-Randbedingungung. Im anderen Grenzfall <span class="math notranslate nohighlight">\(\alpha \rightarrow \infty\)</span> liegt die Dirichlet-Randbedingung vor.</p>
+</section>
+</section>
+<section id="herleitung-schwache-gleichung">
+<h2><span class="section-number">3.3. </span>Herleitung schwache Gleichung<a class="headerlink" href="#herleitung-schwache-gleichung" title="Link to this heading">#</a></h2>
+<p>Wie bereits erwähnt wird die stationäre Wärmeverteilung gemäss <a class="reference internal" href="#equation-eq-tempdgl">(3.2)</a> verwendet.</p>
+<p>Die schwache Formulierung ergibt sich, indem man beide Seiten mit einer Testfunktion  <span class="math notranslate nohighlight">\(v \in H^1\)</span> (FE-Raum) multipliziert und über das Gebiet  <span class="math notranslate nohighlight">\(\Omega\)</span> integriert:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_\Omega - \text{div}(\lambda \nabla T) \cdot v  \, d\Omega = \int_\Omega q\, v \, d\Omega
+\]</div>
+<p>Man beachte, dass <span class="math notranslate nohighlight">\(\lambda\)</span> vom Ort abhängig ist.
+Der Term mit der Divergenz <span class="math notranslate nohighlight">\(\text{div}(\lambda \nabla T)\)</span> könnte als <span class="math notranslate nohighlight">\(\nabla \cdot (\lambda \nabla T)\)</span> geschrieben werden. Dies zeigt, dass die zweite Ableitung der Temperatur vorkommt. Daher verwenden wir für die linke Seite die partielle Integration im Mehrdimensionalen (Satz von Gauss) und erhalten</p>
+<div class="math notranslate nohighlight" id="equation-eq-schwacheglgtemp">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-schwacheglgtemp" title="Link to this equation">#</a></span>\[
+\int_\Omega \lambda \nabla T \cdot \nabla v  \, d\Omega - \int_{\partial\Omega} \lambda \underbrace{\nabla T \cdot \mathbf{n}}_{\frac{\partial T}{\partial \mathbf{n}}}\, v\, ds= \int_\Omega q\, v \, d\Omega .
+\]</div>
+<p>Nun kommen die Randbedingungen ins Spiel.</p>
+<p>Für <strong>Dirichlet-Randbedingungen</strong> <span class="math notranslate nohighlight">\(T(x)=0\)</span> wird für den FE-Raum gefordert, dass er auf dem Rand verschwindet, also <span class="math notranslate nohighlight">\(v \in H_0^1\)</span>. Dadurch entfällt das Randintegral in der schwachen Gleichung.</p>
+<div class="math notranslate nohighlight" id="equation-eq-schwacheglgtempdir">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-eq-schwacheglgtempdir" title="Link to this equation">#</a></span>\[
+\int_\Omega \lambda \nabla T \cdot \nabla v  \, d\Omega = \int_\Omega q\, v \, d\Omega
+\]</div>
+<p>Für <strong>Neumann-Randbedingungen</strong> <span class="math notranslate nohighlight">\(\nabla T \cdot \mathbf{n}=g(s)\)</span> sei die Testfunktion <span class="math notranslate nohighlight">\(v \in H^1\)</span>. Das Randintegral in der schwachen Gleichung entfällt, wenn die Normalenableitung der Temperatur, bzw. <span class="math notranslate nohighlight">\(g(s)\)</span>, gleich Null ist.</p>
+<div class="math notranslate nohighlight" id="equation-eq-schwacheglgtempneu">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-eq-schwacheglgtempneu" title="Link to this equation">#</a></span>\[
+\int_\Omega \lambda \nabla T \cdot \nabla v  \, d\Omega = \int_\Omega q\, v \, d\Omega + \int_{\partial\Omega} \lambda\, g(s)\, v\, ds
+\]</div>
+<p>Für <strong>Robin-Randbedingungen</strong> <span class="math notranslate nohighlight">\(\nabla T \cdot \mathbf{n} = - \alpha T\)</span> wird in der schwachen Gleichung <span class="math notranslate nohighlight">\(\nabla T \cdot \mathbf{n}\)</span> durch <span class="math notranslate nohighlight">\(- \alpha T\)</span> ausgedrückt. Das Randintegral gehört zur Bilinearform, weil <span class="math notranslate nohighlight">\(T\)</span> darin vorkommt.
+Für die Testfunktion gilt <span class="math notranslate nohighlight">\(v\in H^1\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-schwacheglgtemprobin">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-eq-schwacheglgtemprobin" title="Link to this equation">#</a></span>\[
+\int_\Omega \lambda \nabla T \cdot \nabla v  \, d\Omega - \int_{\partial\Omega} \lambda \underbrace{(-\alpha T)}_{\frac{\partial T}{\partial \mathbf{n}}}\, v\, ds= \int_\Omega q\, v \, d\Omega
+\]</div>
+</section>
+<section id="definition-mit-ngsolve">
+<span id="ref-ngsolvewaermekap"></span><h2><span class="section-number">3.4. </span>Definition mit NGsolve<a class="headerlink" href="#definition-mit-ngsolve" title="Link to this heading">#</a></h2>
+<p>Im Folgenden wird die Implementierung in NGsolve für folgende Randbedingungen gezeigt:</p>
+<ul class="simple">
+<li><p>Dirichlet-Randbedingung <span class="math notranslate nohighlight">\(T=10\)</span> auf rechtem Rand</p></li>
+<li><p>Neumann-Randbedingung <span class="math notranslate nohighlight">\(\nabla T \cdot \mathbf{n} = -200\)</span> auf oberem Rand (Fluss nach aussen)</p></li>
+<li><p>Robin-Randbedingung <span class="math notranslate nohighlight">\(\nabla T \cdot \mathbf{n} = -\alpha T\)</span> mit <span class="math notranslate nohighlight">\(\alpha=100\)</span> auf linkem Rand</p></li>
+</ul>
+<p>Für die Rotationsachse (unterer Rand) wird stets eine homogone Neumann-Randbedingung  <span class="math notranslate nohighlight">\(\nabla T \cdot \mathbf{n} = 0\)</span> angenommen,
+was physikalisch keinem Fluss entspricht. Aus der schwachen Gleichung <a class="reference internal" href="#equation-eq-schwacheglgtemp">(3.3)</a> resultiert dies durch Weglassen des Randintegrals automatisch.</p>
+<div class="literal-block-wrapper docutils container" id="waermengsolve">
+<div class="code-block-caption"><span class="caption-number">Listing 3.1 </span><span class="caption-text">Wärmeleitung NGsolve</span><a class="headerlink" href="#waermengsolve" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">V2</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dirichlet</span> <span class="o">=</span> <span class="s1">&#39;outer_right&#39;</span><span class="p">)</span>
+<span class="n">uT</span><span class="p">,</span><span class="n">vT</span> <span class="o">=</span> <span class="n">V2</span><span class="o">.</span><span class="n">TnT</span><span class="p">()</span>
+<span class="n">gfT</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">V2</span><span class="p">)</span>
+
+<span class="c1"># Bilinear- und Linearform (Grundform)</span>
+<span class="n">aT</span> <span class="o">=</span> <span class="n">BilinearForm</span><span class="p">(</span><span class="n">V2</span><span class="p">)</span>
+<span class="n">aT</span> <span class="o">+=</span> <span class="n">lam</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">uT</span><span class="p">)</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">vT</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">fT</span> <span class="o">=</span> <span class="n">LinearForm</span><span class="p">(</span><span class="n">V2</span><span class="p">)</span>
+<span class="n">fT</span> <span class="o">+=</span> <span class="n">Qe</span><span class="o">*</span><span class="n">vT</span><span class="o">*</span><span class="n">dx</span>
+
+<span class="c1"># Dirichlet T=10 auf &#39;outer_right&#39;</span>
+<span class="n">gfT</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">definedon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">Boundaries</span><span class="p">(</span><span class="s1">&#39;outer_right&#39;</span><span class="p">))</span>
+
+<span class="c1"># Neumann dT/dn=-200 (Fluss nach aussen) auf &#39;outer_top&#39;</span>
+<span class="n">fT</span> <span class="o">+=</span> <span class="n">lamAir</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">)</span> <span class="o">*</span>  <span class="n">vT</span> <span class="o">*</span> <span class="n">ds</span><span class="p">(</span><span class="n">definedon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">Boundaries</span><span class="p">(</span><span class="s1">&#39;outer_top&#39;</span><span class="p">))</span>
+
+<span class="c1"># Robin alpha=100 auf &#39;outer_left&#39;</span>
+<span class="n">aT</span> <span class="o">+=</span> <span class="n">lamAir</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">uT</span><span class="o">*</span> <span class="n">vT</span> <span class="o">*</span> <span class="n">ds</span><span class="p">(</span><span class="n">definedon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">Boundaries</span><span class="p">(</span><span class="s1">&#39;outer_left&#39;</span><span class="p">))</span>
+
+<span class="c1"># Assembling</span>
+<span class="n">aT</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+<span class="n">fT</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+
+<span class="c1"># Lösen des Systems mit inhomogenen Dirichlet-Randbedingungen</span>
+<span class="n">gfT</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">aT</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">Inverse</span><span class="p">(</span><span class="n">V2</span><span class="o">.</span><span class="n">FreeDofs</span><span class="p">())</span> <span class="o">*</span> <span class="p">(</span><span class="n">fT</span><span class="o">.</span><span class="n">vec</span> <span class="o">-</span> <span class="n">aT</span><span class="o">.</span><span class="n">mat</span> <span class="o">*</span> <span class="n">gfT</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+
+<span class="c1"># ODER  Lösen des Systems  mit homogenen Dirichlet-Randbedingungen (T=0)</span>
+<span class="c1"># gfT.vec.data = aT.mat.Inverse(V2.FreeDofs()) * fT.vec</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Problemformulierung"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="FormulierungWirbelstrom.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Formulierung Wirbelstromproblem</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Geometrie/stdGeo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Standard-Geometrie</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinfachung-der-warmeleitungsgleichung">3.1. Vereinfachung der Wärmeleitungsgleichung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#randbedingungen">3.2. Randbedingungen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-randbedingung">3.2.1. Dirichlet-Randbedingung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-randbedingung">3.2.2. Neumann-Randbedingung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robin-randbedingung">3.2.3. Robin-Randbedingung</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herleitung-schwache-gleichung">3.3. Herleitung schwache Gleichung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-mit-ngsolve">3.4. Definition mit NGsolve</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Samuel Dobler, Alexander Grunder, Pascal Heiniger
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
