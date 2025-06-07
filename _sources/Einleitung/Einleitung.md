@@ -29,11 +29,11 @@ Die magnetische Permeabilität $\mu$ ist gegeben durch $\mu = \mu_r \cdot \mu_0$
 
 ```{table} Materialparameter
 :name: mat_constants
-| Material                     | Luft                               | Windungen                          | Kern                               |
-|------------------------------|:------------------------------------:|:------------------------------------:|:------------------------------------:|
-| el. Leitfähigkeit $\sigma$   | $0 \text{ S/m}$                  | $56 \cdot 10^6 \text{ S/m}$      | $56 \cdot 10^6 \text{ S/m}$      |
-| relative mag. Permeabilität $\mu_r$ | $1$                              | $1$                              | $1$                              |
-| Wärmeleitfähigkeit $\lambda$ | $0.0262 \text{ W/(m K)}$         | $400 \text{ W/(m K)}$            | $400 \text{ W/(m K)}$            |
+| Material                     | Luft                               | Windungen                          | Kern / Topf                               | Wasser |
+|------------------------------|:------------------------------------:|:------------------------------------:|:------------------------------------:|:------------------------------------:|
+| el. Leitfähigkeit $\sigma$   | $0 \text{ S/m}$                  | $56 \cdot 10^6 \text{ S/m}$      | $56 \cdot 10^6 \text{ S/m}$      | $0.01 \text{ S/m}$ (Leitungswasser typ.: $0.005\, \ldots\, 0.05 \text{ S/m}$) |
+| relative mag. Permeabilität $\mu_r$ | $1$                              | $1$                              | $1$                    | $1$ |
+| Wärmeleitfähigkeit $\lambda$ | $0.0262 \text{ W/(m K)}$         | $400 \text{ W/(m K)}$            | $400 \text{ W/(m K)}$            | $0.6 \text{ W/(m K)}$            |
 ```
 
 ```{table} Weitere Parameter und Konstanten

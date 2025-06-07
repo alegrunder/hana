@@ -408,7 +408,8 @@ Sie sind definiert in <code class="docutils literal notranslate"><span class="pr
 <tr class="row-odd"><th class="head"><p>Material</p></th>
 <th class="head text-center"><p>Luft</p></th>
 <th class="head text-center"><p>Windungen</p></th>
-<th class="head text-center"><p>Kern</p></th>
+<th class="head text-center"><p>Kern / Topf</p></th>
+<th class="head text-center"><p>Wasser</p></th>
 </tr>
 </thead>
 <tbody>
@@ -416,8 +417,10 @@ Sie sind definiert in <code class="docutils literal notranslate"><span class="pr
 <td class="text-center"><p><span class="math notranslate nohighlight">\(0 \text{ S/m}\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(56 \cdot 10^6 \text{ S/m}\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(56 \cdot 10^6 \text{ S/m}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0.01 \text{ S/m}\)</span> (Leitungswasser typ.: <span class="math notranslate nohighlight">\(0.005\, \ldots\, 0.05 \text{ S/m}\)</span>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>relative mag. Permeabilität <span class="math notranslate nohighlight">\(\mu_r\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
@@ -426,6 +429,7 @@ Sie sind definiert in <code class="docutils literal notranslate"><span class="pr
 <td class="text-center"><p><span class="math notranslate nohighlight">\(0.0262 \text{ W/(m K)}\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(400 \text{ W/(m K)}\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(400 \text{ W/(m K)}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0.6 \text{ W/(m K)}\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -451,21 +455,23 @@ Sie sind definiert in <code class="docutils literal notranslate"><span class="pr
 <div class="code-block-caption"><span class="caption-number">Listing 1.1 </span><span class="caption-text">Inhalt von project_constants.py</span><a class="headerlink" href="#global-constants-include" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mi">50</span>     <span class="c1"># Frequenz 50 Hz</span>
-<span class="n">mu0</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e-7</span>     <span class="c1"># Magnetische Feldkonstante</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mi">50</span>       <span class="c1"># Frequenz 50 Hz</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e-7</span>       <span class="c1"># Magnetische Feldkonstante</span>
 
-<span class="n">sigmaCu</span> <span class="o">=</span> <span class="mf">56e6</span>      <span class="c1"># S/m (Kupfer)</span>
-<span class="n">sigmaCore</span> <span class="o">=</span> <span class="mf">56e6</span>    <span class="c1"># S/m (Kupfer)</span>
+<span class="n">sigmaCu</span> <span class="o">=</span> <span class="mf">56e6</span>        <span class="c1"># S/m (Kupfer)</span>
+<span class="n">sigmaCoreTopf</span> <span class="o">=</span> <span class="mf">56e6</span>  <span class="c1"># S/m (Core und Topf - Kupfer)</span>
+<span class="n">sigmaWater</span> <span class="o">=</span> <span class="mf">0.01</span>     <span class="c1"># S/m (Leitungswasser: 0.005 ... 0.05 S/m)</span>
 
-<span class="n">lamAir</span> <span class="o">=</span> <span class="mf">0.0262</span>     <span class="c1"># W/(m K)</span>
-<span class="n">lamCu</span> <span class="o">=</span> <span class="mi">400</span>         <span class="c1"># W/(m K)</span>
-<span class="n">lamCore</span> <span class="o">=</span> <span class="mi">400</span>       <span class="c1"># W/(m K)</span>
+<span class="n">lamAir</span> <span class="o">=</span> <span class="mf">0.0262</span>       <span class="c1"># W/(m K)</span>
+<span class="n">lamCu</span> <span class="o">=</span> <span class="mi">400</span>           <span class="c1"># W/(m K)</span>
+<span class="n">lamCoreTopf</span> <span class="o">=</span> <span class="mi">400</span>     <span class="c1"># W/(m K) (Core und Topf)</span>
+<span class="n">lamWater</span> <span class="o">=</span> <span class="mf">0.6</span>        <span class="c1"># W/(m K)</span>
 
-<span class="c1"># Reihenfolge: air, copper, core</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">([</span><span class="mi">0</span> <span class="p">,</span> <span class="n">sigmaCu</span> <span class="p">,</span> <span class="n">sigmaCore</span> <span class="p">])</span>
-<span class="n">mur</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">([</span><span class="mi">1</span> <span class="p">,</span><span class="mi">1</span> <span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># Reihenfolge: air, copper, core, water</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">([</span><span class="mi">0</span> <span class="p">,</span> <span class="n">sigmaCu</span> <span class="p">,</span> <span class="n">sigmaCoreTopf</span><span class="p">,</span> <span class="n">sigmaWater</span><span class="p">])</span>
+<span class="n">mur</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">([</span><span class="mi">1</span> <span class="p">,</span><span class="mi">1</span> <span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">nu</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">mu0</span> <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="n">mur</span> <span class="p">)</span> <span class="c1"># Permeabilität des Materials</span>
-<span class="n">lam</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">([</span><span class="n">lamAir</span><span class="p">,</span> <span class="n">lamCu</span><span class="p">,</span> <span class="n">lamCore</span><span class="p">])</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">([</span><span class="n">lamAir</span><span class="p">,</span> <span class="n">lamCu</span><span class="p">,</span> <span class="n">lamCoreTopf</span><span class="p">,</span> <span class="n">lamWater</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
