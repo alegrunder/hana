@@ -12,7 +12,7 @@ vz, vr = grad(v)
 # Schwache Gleichung als Bilinearform
 a = BilinearForm(V)
 # erster Bilinearterm (sigma=0 in Luft)
-a += 1j*omega*sigma*u*v*dx(definedon=mesh.Materials('copper|core')) 
+a += 1j*omega*sigma*u*v*dx(definedon=mesh.Materials('copper|core|water')) 
 # zweiter Bilinearterm
 a += (nu*(1/r*u+ur)*vr + nu*uz*vz)*dx 
 

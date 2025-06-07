@@ -62,7 +62,7 @@ class EddyCurrentProblem:
         self.a = BilinearForm(self.V)
         self.a += (
             1j * self.omega * self.sigma * self.u * self.v
-            * dx(definedon=self.mesh.Materials('copper|core'))
+            * dx(definedon=self.mesh.Materials('copper|core|water'))
         )
         self.a += (
             self.nu * (1 / r * self.u + ur) * vr + self.nu * uz * vz
