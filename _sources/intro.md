@@ -13,7 +13,10 @@ kernelspec:
   name: python3
 ---
 
-# Willkommen im HANA Projekt
+# Willkommen im HANA SEP-Projekt
+Thema: Induktive Erwärmung <br>
+Autoren: Samuel Dobler, Alexander Grunder, Pascal Heiniger <br>
+Dozent: Dr. Simon Iwan Stingelin
 
 ```{tableofcontents}
 ```

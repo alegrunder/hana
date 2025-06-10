@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/myfile.css?v=83a6d794" />
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Formulierung Wirbelstromproblem" href="../Problemformulierung/FormulierungWirbelstrom.html" />
-    <link rel="prev" title="Willkommen im HANA Projekt" href="../intro.html" />
+    <link rel="prev" title="Willkommen im HANA SEP-Projekt" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,7 +178,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Willkommen im HANA Projekt
+                    Willkommen im HANA SEP-Projekt
                 </a>
             </li>
         </ul>
@@ -400,7 +400,7 @@ document.write(`
 <section id="parameter-und-konstanten">
 <h2><span class="section-number">1.2. </span>Parameter und Konstanten<a class="headerlink" href="#parameter-und-konstanten" title="Link to this heading">#</a></h2>
 <p>Die folgenden Parameter und Konstanten werden im gesamten Projekt verwendet.
-Sie sind definiert in <code class="docutils literal notranslate"><span class="pre">global_parameters.py</span></code>.</p>
+Sie sind definiert in <code class="docutils literal notranslate"><span class="pre">global_parameters.py</span></code>. Die Werte basieren auf den Quellen <span id="id1">[<a class="reference internal" href="../appendix.html#id2" title="Simon Stingelin. HANA Numerik SEP Projekt: Aufgabenstellung. Projektaufgabenstellung, Zürcher Hochschule für Angewandte Wissenschaften (ZHAW), April 2025. Aufgabenstellung für das Projekt im Modul HANA Numerik SEP. Thema: Induktive Erwärmung. Gruppe: Samuel Dobler, Alexander Grunder, Pascal Heiniger.">Sti25</a>]</span> und <span id="id2">[<a class="reference internal" href="../appendix.html#id3" title="Was bedeutet die elektrische Leitfähigkeit von Wasser? URL: https://www.gross-wassertechnik.de/wissen/leitfaehigkeit-wasser/ (visited on 2025-06-10).">Gro</a>]</span>.</p>
 <p>Die magnetische Permeabilität <span class="math notranslate nohighlight">\(\mu\)</span> ist gegeben durch <span class="math notranslate nohighlight">\(\mu = \mu_r \cdot \mu_0\)</span>. Die relative Permeabilität ist ein Mass für die Feldverstärkung im Material (vgl. <a class="reference internal" href="#mat-constants"><span class="std std-numref">Table 1.1</span></a>). Vom Gebiet abhängige Konstanten können mit Hilfe von <code class="docutils literal notranslate"><span class="pre">CoefficientFunction()</span></code> definiert werden (vgl. <a class="reference internal" href="#global-constants-include"><span class="std std-numref">Listing 1.1</span></a>).</p>
 <div class="pst-scrollable-table-container"><table class="table" id="mat-constants">
 <caption><span class="caption-number">Table 1.1 </span><span class="caption-text">Materialparameter</span><a class="headerlink" href="#mat-constants" title="Link to this table">#</a></caption>
@@ -452,7 +452,7 @@ Sie sind definiert in <code class="docutils literal notranslate"><span class="pr
 </table>
 </div>
 <div class="literal-block-wrapper docutils container" id="global-constants-include">
-<div class="code-block-caption"><span class="caption-number">Listing 1.1 </span><span class="caption-text">Inhalt von project_constants.py</span><a class="headerlink" href="#global-constants-include" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 1.1 </span><span class="caption-text">Inhalt von global_parameters.py</span><a class="headerlink" href="#global-constants-include" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mi">50</span>       <span class="c1"># Frequenz 50 Hz</span>
@@ -460,7 +460,7 @@ Sie sind definiert in <code class="docutils literal notranslate"><span class="pr
 
 <span class="n">sigmaCu</span> <span class="o">=</span> <span class="mf">56e6</span>        <span class="c1"># S/m (Kupfer)</span>
 <span class="n">sigmaCoreTopf</span> <span class="o">=</span> <span class="mf">56e6</span>  <span class="c1"># S/m (Core und Topf - Kupfer)</span>
-<span class="n">sigmaWater</span> <span class="o">=</span> <span class="mf">0.01</span>     <span class="c1"># S/m (Leitungswasser: 0.005 ... 0.05 S/m)</span>
+<span class="n">sigmaWater</span> <span class="o">=</span> <span class="mf">0.01</span>     <span class="c1"># S/m (Trinkwasser: 35 ... 350 uS/cm --&gt; 100 uS/cm = 0.01 S/m)</span>
 
 <span class="n">lamAir</span> <span class="o">=</span> <span class="mf">0.0262</span>       <span class="c1"># W/(m K)</span>
 <span class="n">lamCu</span> <span class="o">=</span> <span class="mi">400</span>           <span class="c1"># W/(m K)</span>
@@ -514,7 +514,7 @@ Sie sind definiert in <code class="docutils literal notranslate"><span class="pr
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Willkommen im HANA Projekt</p>
+        <p class="prev-next-title">Willkommen im HANA SEP-Projekt</p>
       </div>
     </a>
     <a class="right-next"

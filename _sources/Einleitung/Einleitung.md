@@ -23,7 +23,7 @@ Im Rahmen dieser Arbeit werden die relevanten Maxwell-Gleichungen für das Wirbe
 
 ## Parameter und Konstanten
 Die folgenden Parameter und Konstanten werden im gesamten Projekt verwendet.
-Sie sind definiert in `global_parameters.py`.
+Sie sind definiert in `global_parameters.py`. Die Werte basieren auf den Quellen {cite:p}`Stingelin2025HANAProjekt` und {cite:p}`GrossWassertechnikLeitfaehigkeit`. 
 
 Die magnetische Permeabilität $\mu$ ist gegeben durch $\mu = \mu_r \cdot \mu_0$. Die relative Permeabilität ist ein Mass für die Feldverstärkung im Material (vgl. {numref}`mat_constants`). Vom Gebiet abhängige Konstanten können mit Hilfe von `CoefficientFunction()` definiert werden (vgl. {numref}`global_constants_include`).
 
@@ -47,5 +47,5 @@ Die magnetische Permeabilität $\mu$ ist gegeben durch $\mu = \mu_r \cdot \mu_0$
 ```{literalinclude} ../ImportExport/global_parameters.py
 :language: python
 :name: global_constants_include
-:caption: Inhalt von project_constants.py
+:caption: Inhalt von global_parameters.py
 ```
