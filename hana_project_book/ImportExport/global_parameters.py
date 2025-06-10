@@ -5,7 +5,7 @@ mu0 = 4*pi*1e-7       # Magnetische Feldkonstante
 
 sigmaCu = 56e6        # S/m (Kupfer)
 sigmaCoreTopf = 56e6  # S/m (Core und Topf - Kupfer)
-sigmaWater = 0.01     # S/m (Leitungswasser: 0.005 ... 0.05 S/m)
+sigmaWater = 0.01     # S/m (Trinkwasser: 35 ... 350 uS/cm --> 100 uS/cm = 0.01 S/m)
 
 lamAir = 0.0262       # W/(m K)
 lamCu = 400           # W/(m K)
