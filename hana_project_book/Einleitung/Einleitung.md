@@ -23,7 +23,7 @@ Im Rahmen dieser Arbeit werden die relevanten Maxwell-Gleichungen für das Wirbe
 
 ## Parameter und Konstanten
 Die folgenden Parameter und Konstanten werden im gesamten Projekt verwendet.
-Sie sind definiert in `global_parameters.py`.
+Sie sind definiert in `global_parameters.py`. Die Werte basieren auf den Quellen {cite:p}`Stingelin2025HANAProjekt` und {cite:p}`GrossWassertechnikLeitfaehigkeit`. 
 
 Die magnetische Permeabilität $\mu$ ist gegeben durch $\mu = \mu_r \cdot \mu_0$. Die relative Permeabilität ist ein Mass für die Feldverstärkung im Material (vgl. {numref}`mat_constants`). Vom Gebiet abhängige Konstanten können mit Hilfe von `CoefficientFunction()` definiert werden (vgl. {numref}`global_constants_include`).
 
@@ -31,7 +31,7 @@ Die magnetische Permeabilität $\mu$ ist gegeben durch $\mu = \mu_r \cdot \mu_0$
 :name: mat_constants
 | Material                     | Luft                               | Windungen                          | Kern / Topf                               | Wasser |
 |------------------------------|:------------------------------------:|:------------------------------------:|:------------------------------------:|:------------------------------------:|
-| el. Leitfähigkeit $\sigma$   | $0 \text{ S/m}$                  | $56 \cdot 10^6 \text{ S/m}$      | $56 \cdot 10^6 \text{ S/m}$      | $0.01 \text{ S/m}$ (Leitungswasser typ.: $0.005\, \ldots\, 0.05 \text{ S/m}$) |
+| el. Leitfähigkeit $\sigma$   | $0 \text{ S/m}$                  | $56 \cdot 10^6 \text{ S/m}$      | $56 \cdot 10^6 \text{ S/m}$      | $0.01 \text{ S/m}$ (Trinkwasser typ.: $0.0035\, \ldots\, 0.035 \text{ S/m}$) |
 | relative mag. Permeabilität $\mu_r$ | $1$                              | $1$                              | $1$                    | $1$ |
 | Wärmeleitfähigkeit $\lambda$ | $0.0262 \text{ W/(m K)}$         | $400 \text{ W/(m K)}$            | $400 \text{ W/(m K)}$            | $0.6 \text{ W/(m K)}$            |
 ```
@@ -47,5 +47,5 @@ Die magnetische Permeabilität $\mu$ ist gegeben durch $\mu = \mu_r \cdot \mu_0$
 ```{literalinclude} ../ImportExport/global_parameters.py
 :language: python
 :name: global_constants_include
-:caption: Inhalt von project_constants.py
+:caption: Inhalt von global_parameters.py
 ```

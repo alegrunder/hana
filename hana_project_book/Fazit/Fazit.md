@@ -14,7 +14,7 @@ kernelspec:
 ---
 
 # Fazit
-Im Rahmen dieser Arbeit wurde das komplexe physikalische Phänomen der induktiven Erwärmung tiefgehend analysiert und modelliert. Dabei wurden zunächst die elektromagnetischen Effekte mit den Maxwell-Gleichungen beschrieben und die entstehenden Wirbelströme in leitfähigen Materialien berechnet. Anschließend wurden die thermischen Effekte mittels der Wärmeleitungsgleichung simuliert, um die resultierende Temperaturverteilung detailliert zu erfassen.
+Im Rahmen dieser Arbeit wurde das komplexe physikalische Phänomen der induktiven Erwärmung tiefgehend analysiert und modelliert. Dabei wurden zunächst die elektromagnetischen Effekte mit den Maxwell-Gleichungen beschrieben und die entstehenden Wirbelströme in leitfähigen Materialien berechnet. Anschliessend wurden die thermischen Effekte mittels der Wärmeleitungsgleichung simuliert, um die resultierende Temperaturverteilung detailliert zu erfassen.
 
 Die numerische Umsetzung erfolgte erfolgreich mit der Finite-Elemente-Methode, deren Potenzial zur Lösung solcher gekoppelter physikalischer Probleme eindrucksvoll demonstriert wurde. Insbesondere zeigte die Untersuchung verschiedener Randbedingungen – Dirichlet-, Neumann- und Robin-Bedingungen – deren Einfluss auf die stationäre Temperaturverteilung deutlich. Die Analysen veranschaulichten, wie stark Randbedingungen die Effizienz und Effektivität des Erwärmungsprozesses beeinflussen können.
 
