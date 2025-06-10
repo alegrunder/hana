@@ -16,7 +16,8 @@ kernelspec:
 # Willkommen im HANA SEP-Projekt
 Thema: Induktive Erwärmung <br>
 Autoren: Samuel Dobler, Alexander Grunder, Pascal Heiniger <br>
-Dozent: Dr. Simon Iwan Stingelin
+Dozent: Dr. Simon Iwan Stingelin <br>
+Datum: 10. Juni 2025
 
 ```{tableofcontents}
 ```
